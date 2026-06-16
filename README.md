@@ -1,6 +1,7 @@
 # AKS Infrastructure — Terraform + Azure DevOps
 
-Terraform code to provision AKS, ACR and networking on Azure, deployed via Azure DevOps pipelines.
+Terraform code to provision AKS, ACR and networking on Azure (for use with [voting-app-aks-argocd](https://github.com/Chetna-DevOps/voting-app-aks-argocd) and related projects), deployed via Azure DevOps pipelines.
+Infrastructure provisioned 
 
 ## What Gets Created
 
@@ -52,7 +53,3 @@ terraform apply -var-file="tf/test.tfvars"
 - Configured remote backend using Azure Blob Storage for shared state management
 - Set up Azure DevOps pipelines with approval gates on Apply and Destroy to prevent accidental changes
 - Used `.tfvars` for environment-specific values so the same code can be reused for different environments
-
-## Credits
-
-Infrastructure provisioned for use with [voting-app-aks-argocd](https://github.com/Chetna-DevOps/voting-app-aks-argocd) and related projects.
