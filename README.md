@@ -55,4 +55,4 @@ terraform apply -var-file="tf/test.tfvars"
 
 ## Credits
 
-Infrastructure provisioned for use with [voting-app-aks-argocd](https://github.com/ChetnaPanday/voting-app-aks-argocd) and related projects.
+Infrastructure provisioned for use with [voting-app-aks-argocd](https://github.com/Chetna-DevOps/voting-app-aks-argocd) and related projects.
