@@ -1,0 +1,53 @@
+# Destroys infrastructure created via Terraform
+
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- group: terraform-project-variables
+- name: workingDir
+  value: $(System.DefaultWorkingDirectory)/terraform
+
+stages:
+
+# ---------------- DESTROY ----------------
+- stage: Terraform_Destroy
+  displayName: Terraform Destroy
+
+  jobs:
+  - deployment: Destroy
+    displayName: Destroy (Approval Required)
+    environment: test
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+
+          - task: TerraformInstaller@1
+            displayName: Install Terraform
+            inputs:
+              terraformVersion: 'latest'
+
+          - task: TerraformTask@5
+            displayName: Init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              workingDirectory: '$(workingDir)'
+              backendServiceArm: '$(azurerm_service_connection)'
+              backendAzureRmResourceGroupName: '$(ResourceGroupName)'
+              backendAzureRmStorageAccountName: '$(StorageAccountName)'
+              backendAzureRmContainerName: '$(ContainerName)'
+              backendAzureRmKey: '$(Key)'
+
+          - task: TerraformTask@5
+            displayName: Destroy
+            inputs:
+              provider: 'azurerm'
+              command: 'destroy'
+              workingDirectory: '$(workingDir)'
+              commandOptions: '-var-file=tf/test.tfvars -auto-approve'
+              environmentServiceNameAzureRM: '$(azurerm_service_connection)'

@@ -1,0 +1,7 @@
+resource_group_name = "<Resource_Group_Name>"
+location            = "West Europe"
+env                 = "test"
+aks_name            = "<AKS_Name>"
+acr_name            = "<ACR_Name>"
+vnet_name           ="<VNet_Name>"
+subnet_name         ="<Subnet_Name>"
