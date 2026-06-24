@@ -53,3 +53,17 @@ terraform apply -var-file="tf/test.tfvars"
 - Configured remote backend using Azure Blob Storage for shared state management
 - Set up Azure DevOps pipelines with approval gates on Apply and Destroy to prevent accidental changes
 - Used `.tfvars` for environment-specific values so the same code can be reused for different environments
+
+## Pipeline Runs
+
+#### Infra Creation Pipeline
+
+![Create Pipleine](screenshots/create-pipeline.png)
+
+#### Infra Deletion Pipeline
+
+![Destroy Pipleine](screenshots/destroy-pipeline.png)
+
+#### Azure Storage Backend Configured
+
+![Azure Storage Backend](screenshots/backend_for_tfstatefile.png)
